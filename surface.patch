@@ -1,0 +1,38 @@
+diff --git a/kernel-surface.spec b/kernel-surface.spec
+index 0ab5bd7..04bd1c0 100644
+--- a/kernel-surface.spec
++++ b/kernel-surface.spec
+@@ -1,5 +1,5 @@
+ #
+-# spec file for package kernel-default
++# spec file for package kernel-surface
+ #
+ # Copyright (c) 2020 SUSE LINUX GmbH, Nuernberg, Germany.
+ #
+@@ -64,8 +64,8 @@
+ %define install_vdso 0
+ %endif
+ 
+-Name:           kernel-default
+-Summary:        The Standard Kernel
++Name:           kernel-surface
++Summary:        A patched version of the standard kernel that it works with Microsoft Surface devices
+ License:        GPL-2.0
+ Group:          System/Kernel
+ Version:        5.8.5
+@@ -309,6 +309,7 @@ Source111:      patches.rt.tar.bz2
+ Source113:      patches.kabi.tar.bz2
+ Source120:      kabi.tar.bz2
+ Source121:      sysctl.tar.bz2
++Source200:	patches.surface.tar.bz2
+ BuildRoot:      %{_tmppath}/%{name}-%{version}-build
+ ExclusiveArch:  aarch64 armv6hl armv7hl %ix86 ppc64 ppc64le riscv64 s390x x86_64
+ %define kmp_target_cpu %_target_cpu
+@@ -397,6 +398,7 @@ NoSource:       111
+ NoSource:       113
+ NoSource:       120
+ NoSource:       121
++NoSource:	200
+ 
+ # Will modules not listed in supported.conf abort the kernel build (0/1)?
+ %define supported_modules_check 0
