@@ -1,4 +1,4 @@
-#!/bin/bashi
+#!/bin/bash
 PKGNAME="kernel-surface"
 KVERSION="5.8"
 ARCH="x86_64"
