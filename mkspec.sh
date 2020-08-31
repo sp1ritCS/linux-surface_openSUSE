@@ -1,9 +1,9 @@
 #!/bin/bash
-PKGNAME="kernel-surface"
-KVERSION="5.8"
-ARCH="x86_64"
-REPOURI="git@github.com:linux-surface/linux-surface.git"
-BUILDROOT="$PWD/surface-opensuse-$(cat /proc/sys/kernel/random/uuid)"
+PKGNAME="${PKGNAME:=kernel-surface}"
+KVERSION="${KVERSION:=5.8}"
+ARCH="${ARCH:=x86_64}"
+REPOURI="${REPOURI:=git@github.com:linux-surface/linux-surface.git}"
+BUILDROOT="${BUILDROOT:=$PWD/surface-opensuse-$(cat /proc/sys/kernel/random/uuid)}"
 
 set -e
 mkdir -p $BUILDROOT
@@ -50,7 +50,9 @@ $(LANG=undef date) - $USER
 
 EOF
 cat kernel-default.changes >> "$PKGNAME.changes"
-git apply "$BUILDROOT/surface.patch"
+#git apply "$BUILDROOT/surface.patch"
+patch -p1 < "$BUILDROOT/surface.patch"
+touch TOLERATE-UNKNOWN-NEW-CONFIG-OPTIONS # bad hack, TODO: figure out how that config parser from suse works
 cd "$BUILDROOT"
 
 # Rename kernel-default to $PKGNAME
